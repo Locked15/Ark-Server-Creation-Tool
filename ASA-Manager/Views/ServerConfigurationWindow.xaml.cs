@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ARKServerCreationTool.Models;
+using ARKServerCreationTool.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,7 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ARKServerCreationTool
+namespace ARKServerCreationTool.Views
 {
     /// <summary>
     /// Interaction logic for ServerConfigurationWindow.xaml

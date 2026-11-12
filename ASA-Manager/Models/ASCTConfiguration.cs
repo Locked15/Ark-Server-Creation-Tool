@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 
-namespace ARKServerCreationTool
+namespace ARKServerCreationTool.Models
 {
 
     /// <summary>

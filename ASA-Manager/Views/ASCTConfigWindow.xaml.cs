@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ARKServerCreationTool.Models;
+using ARKServerCreationTool.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MessageBox = System.Windows.Forms.MessageBox;
 
-namespace ARKServerCreationTool
+namespace ARKServerCreationTool.Views
 {
     /// <summary>
     /// Interaction logic for ASCTConfigWindow.xaml

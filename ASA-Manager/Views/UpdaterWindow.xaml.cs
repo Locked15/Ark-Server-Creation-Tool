@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ARKServerCreationTool.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,7 +22,7 @@ using System.Text.RegularExpressions;
 using MessageBox = System.Windows.MessageBox;
 using System.Collections.Concurrent;
 
-namespace ARKServerCreationTool
+namespace ARKServerCreationTool.Views
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
@@ -275,27 +276,4 @@ namespace ARKServerCreationTool
             UpdateButtons();
         }
     }
-
-    class UpdatableServerListEntry
-    {
-        public UpdatableServerListEntry(int serverID)
-        {
-            targetServerID = serverID;
-        }
-
-        private ASCTServerConfig targetServer
-        {
-            get
-            {
-                return ASCTGlobalConfig.Instance.Servers.Where(s => s.ID == targetServerID).DefaultIfEmpty(null).FirstOrDefault();
-            }
-        }
-
-        public int targetServerID { get; private set; }
-
-        public string serverName => targetServer.Name;
-        public string serverCluster => targetServer.ClusterKey;
-        public string serverRunning => targetServer.IsRunningToString;
-    }
 }
-

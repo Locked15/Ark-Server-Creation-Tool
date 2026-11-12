@@ -8,7 +8,35 @@ This tool will automate the downloading, installation and setup of your very own
 The tool right now is a very barebones application but is getting updated constantly to improve it
 
 Requirements:
- - .NET 9
+ - Windows with the .NET 11 Desktop Runtime
+
+# Building from source
+
+Install the .NET 11 SDK, then run from the repository root:
+
+```sh
+dotnet build "ARK Server Creation Tool.sln" --configuration Release
+```
+
+To produce a Windows x64 distribution that uses the installed .NET 11 Desktop Runtime:
+
+```sh
+dotnet publish "ASA-Manager/ARK Server Creation Tool.csproj" --configuration Release --runtime win-x64 --self-contained false
+```
+
+The project enables Windows targeting so it can also be compiled on Linux or macOS. Running the WPF application and testing its UI requires Windows. Build release distributions on Windows.
+
+[NetBeauty](https://github.com/nulastudio/NetBeauty2) runs on build and publish, placing dependency DLLs in the output's `libraries` subfolder. Keep this folder alongside the application when copying a build.
+
+Source files in `ASA-Manager` are grouped by responsibility:
+
+- `Views`: WPF windows and their code-behind.
+- `Models`: global, server, and legacy configuration, plus the updater list entry.
+- `Services`: game process, firewall, and certificate operations.
+- `Helpers`: shared window management helpers.
+- `Properties`: assembly metadata and generated resources.
+
+`App.xaml` and `App.xaml.cs` remain at the project root as the application entry point.
 
 # Instructions on using this tool
 
