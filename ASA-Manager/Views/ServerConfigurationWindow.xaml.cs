@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ARKServerCreationTool.Models;
+using ARKServerCreationTool.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,7 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ARKServerCreationTool
+namespace ARKServerCreationTool.Views
 {
     /// <summary>
     /// Interaction logic for ServerConfigurationWindow.xaml
@@ -65,6 +67,7 @@ namespace ARKServerCreationTool
             UpdateMapCombo();
             UpdateCommandLineBox();
             UpdateModList();
+            UpdateUserLaunchArgumentsList();
 
             windowReady = true;
         }
@@ -197,6 +200,7 @@ namespace ARKServerCreationTool
             if (chkbx_overrideCommandline.IsChecked.Value) serv.customLaunchArgs = txt_commandLine.Text.Trim();
             serv.ActiveEvent = txt_activeEvent.Text.Trim();
             serv.StartAutomatically = chk_automaticStart.IsChecked.Value;
+            serv.userLaunchArguments= lst_UserLauncharguments.Items.Cast<string>().ToHashSet();
         }
 
         private void btn_newCluster_Click(object sender, RoutedEventArgs e)
@@ -330,6 +334,46 @@ namespace ARKServerCreationTool
         {
             txt_multiHomeIPaddress.IsEnabled = chk_useMultiHome.IsChecked.Value;
             UpdateCommandLineBox();
+        }
+        private void UpdateUserLaunchArgumentsList()
+        {
+            lst_UserLauncharguments.Items.Clear();
+
+            foreach (var item in targetServer.userLaunchArguments)
+            {
+                lst_UserLauncharguments.Items.Add(item);
+            }
+            lst_UserLauncharguments.Items.Refresh();
+        }
+        private void Btn_addUserLaunchArguments_OnClick(object sender, RoutedEventArgs e)
+        {
+            string arg = txt_addUserLaunchArguments.Text.Trim();
+            if (!string.IsNullOrEmpty(arg) && !targetServer.userLaunchArguments.Contains(arg))
+            {
+                targetServer.userLaunchArguments.Add(arg);
+                UpdateUserLaunchArgumentsList();
+                txt_addUserLaunchArguments.Clear();
+                UpdateCommandLineBox();
+            }
+        }
+        private void Lst_UserLauncharguments_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btn_removeUserLaunchArguments.IsEnabled = lst_UserLauncharguments.SelectedItems.Count > 0;
+        }
+        private void Btn_removeUSerLaunchArguments_OnClick(object sender, RoutedEventArgs e)
+        {
+            var selectedArgs = lst_UserLauncharguments
+                .SelectedItems
+                .Cast<string>()
+                .ToHashSet();
+            targetServer.userLaunchArguments.RemoveWhere(x => selectedArgs.Contains(x));
+            UpdateUserLaunchArgumentsList();
+            UpdateCommandLineBox();
+        }
+        public string getuserarguments()
+        {
+            return string.Join(" ", targetServer.userLaunchArguments);;
+       
         }
     }
 }

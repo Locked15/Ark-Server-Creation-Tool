@@ -2,15 +2,24 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <TargetFramework>net11.0-windows</TargetFramework>
     <RootNamespace>ARKServerCreationTool</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <BeautyLibsDir>./libraries</BeautyLibsDir>
+    <BeautyOnPublishOnly>false</BeautyOnPublishOnly>
+    <!-- Use the SDK publish flag because NetBeauty does not recognize newer CLI arguments. -->
+    <BeautyOnPublishOnly Condition="'$(_IsPublishing)' == 'true'">true</BeautyOnPublishOnly>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="nulastudio.NetBeauty" Version="2.1.5.1" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="WindowsFirewallHelper" Version="2.2.0.86" />
   </ItemGroup>

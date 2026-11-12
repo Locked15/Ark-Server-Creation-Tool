@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ARKServerCreationTool.Models;
+using ARKServerCreationTool.Helpers;
+using ARKServerCreationTool.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,11 +17,11 @@ using System.Windows.Navigation;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Threading;
-using static ARKServerCreationTool.ASCTTools;
+using static ARKServerCreationTool.Helpers.ASCTTools;
 using System.Diagnostics.Metrics;
 using System.Windows.Media.Animation;
 
-namespace ARKServerCreationTool
+namespace ARKServerCreationTool.Views
 {
     /// <summary>
     /// Interaction logic for ServerWindow.xaml

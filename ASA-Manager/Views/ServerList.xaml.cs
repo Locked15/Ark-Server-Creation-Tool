@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ARKServerCreationTool.Models;
+using ARKServerCreationTool.Helpers;
+using ARKServerCreationTool.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.IO;
@@ -16,10 +19,10 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Application = System.Windows.Application;
-using static ARKServerCreationTool.ASCTTools;
+using static ARKServerCreationTool.Helpers.ASCTTools;
 
 
-namespace ARKServerCreationTool
+namespace ARKServerCreationTool.Views
 {
     /// <summary>
     /// Interaction logic for ServerList.xaml
