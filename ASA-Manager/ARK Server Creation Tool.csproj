@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <BeautyLibsDir>./libraries</BeautyLibsDir>
+    <BeautyLibsDir>./Packages</BeautyLibsDir>
     <BeautyOnPublishOnly>false</BeautyOnPublishOnly>
     <!-- Use the SDK publish flag because NetBeauty does not recognize newer CLI arguments. -->
     <BeautyOnPublishOnly Condition="'$(_IsPublishing)' == 'true'">true</BeautyOnPublishOnly>

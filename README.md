@@ -26,7 +26,7 @@ dotnet publish "ASA-Manager/ARK Server Creation Tool.csproj" --configuration Rel
 
 The project enables Windows targeting so it can also be compiled on Linux or macOS. Running the WPF application and testing its UI requires Windows. Build release distributions on Windows.
 
-[NetBeauty](https://github.com/nulastudio/NetBeauty2) runs on build and publish, placing dependency DLLs in the output's `libraries` subfolder. Keep this folder alongside the application when copying a build.
+[NetBeauty](https://github.com/nulastudio/NetBeauty2) runs on build and publish, placing dependency DLLs in the output's `Packages` subfolder. Keep this folder alongside the application when copying a build.
 
 Source files in `ASA-Manager` are grouped by responsibility:
 
@@ -37,6 +37,8 @@ Source files in `ASA-Manager` are grouped by responsibility:
 - `Properties`: assembly metadata and generated resources.
 
 `App.xaml` and `App.xaml.cs` remain at the project root as the application entry point.
+
+Application settings are stored in `Configs/ASCTGlobalConfig.json` next to the executable. Older `ASCTGlobalConfig.json` and legacy `ASCTConfiguration.json` files are moved into `Configs` automatically when loaded, unless the destination already exists. Game server INI files stay in each server's game directory.
 
 # Instructions on using this tool
 

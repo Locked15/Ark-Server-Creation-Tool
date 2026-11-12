@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ARKServerCreationTool.Helpers;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -86,16 +87,18 @@ namespace ARKServerCreationTool.Models
 
         private static void SaveConfig(ASCTGlobalConfig config)
         {
-            File.WriteAllText(configName, JsonConvert.SerializeObject(config, Formatting.Indented));
+            File.WriteAllText(ConfigurationStorage.GetPath(configName), JsonConvert.SerializeObject(config, Formatting.Indented));
         }
 
         public static ASCTGlobalConfig LoadConfig()
         {
             ASCTGlobalConfig returnConfig = null;
 
-            if (File.Exists(configName))
+            string configPath = ConfigurationStorage.GetPath(configName);
+
+            if (File.Exists(configPath))
             {
-                string json = File.ReadAllText(configName);
+                string json = File.ReadAllText(configPath);
 
                 returnConfig = JsonConvert.DeserializeObject<ASCTGlobalConfig>(json);
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ARKServerCreationTool.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -105,16 +106,18 @@ namespace ARKServerCreationTool.Models
 
         public static void SaveConfig(ASCTConfiguration config)
         {
-            File.WriteAllText(configName, JsonConvert.SerializeObject(config, Formatting.Indented));
+            File.WriteAllText(ConfigurationStorage.GetPath(configName), JsonConvert.SerializeObject(config, Formatting.Indented));
         }
 
         public static ASCTConfiguration LoadConfig()
         {
             ASCTConfiguration returnConfig = null;
 
-            if (File.Exists(configName))
+            string configPath = ConfigurationStorage.GetPath(configName);
+
+            if (File.Exists(configPath))
             {
-                string json = File.ReadAllText(configName);
+                string json = File.ReadAllText(configPath);
 
                 returnConfig = JsonConvert.DeserializeObject<ASCTConfiguration>(json);
             }
